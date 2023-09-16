@@ -1,0 +1,12 @@
+.example-card {
+  max-width: 30rem;
+}
+
+.example-header-image {
+  background-size: cover;
+}
+
+mat-card-actions{
+  display: flex;
+  justify-content: space-between;
+}

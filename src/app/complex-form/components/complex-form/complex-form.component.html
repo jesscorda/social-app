@@ -1,0 +1,89 @@
+<form [formGroup]="mainForm" *ngIf="vm$ | async">
+  <div class="personalInfo" formGroupName="personalInfo">
+    <p>Personal Information</p>
+    <div class="form-row">
+      <mat-form-field appearance="outline">
+        <mat-label>First Name</mat-label>
+        <input type="text" matInput formControlName="firstName" />
+        <mat-error>{{
+          getErrorMessage(personalInfoForm.get("firstName"))
+        }}</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Last Name</mat-label>
+        <input type="text" matInput formControlName="lastName" />
+        <mat-error>{{
+          getErrorMessage(personalInfoForm.get("lastName"))
+        }}</mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="chooseContact" formGroupName="contactPreference">
+    <p>Preferred Mode of Contact</p>
+    <mat-radio-group [formControl]="contactPreferenceCtrl">
+      <mat-radio-button value="email">Mail</mat-radio-button>
+      <mat-radio-button value="phone">Telephone</mat-radio-button>
+    </mat-radio-group>
+  </div>
+  <div class="email" formGroupName="email">
+    <p>Email</p>
+    <div class="form-row">
+      <mat-form-field appearance="outline">
+        <mat-label>Email Address</mat-label>
+        <input type="text" matInput formControlName="email" />
+        <mat-error>{{ getErrorMessage(emailCtrl) }}</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Confirm Email Address</mat-label>
+        <input type="text" matInput formControlName="confirm" />
+        <mat-error>{{ getErrorMessage(confirmEmailCtrl) }}</mat-error>
+      </mat-form-field>
+    </div>
+    <span class="mat-error" *ngIf="(showErrorIfUneqEmail$ | async)">{{
+      errorMessages.Mismatch
+    }}</span>
+  </div>
+  <div class="phone" formGroupName="phone">
+    <p>Telephone</p>
+    <div class="form-row">
+      <mat-form-field appearance="outline">
+        <mat-label>Telephone Number</mat-label>
+        <input type="text" matInput [formControl]="phoneCtrl" />
+        <mat-error>{{ getErrorMessage(phoneCtrl) }}</mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="loginInfo" formGroupName="loginInfo">
+    <p>Login Information</p>
+    <div class="form-row">
+      <mat-form-field appearance="outline">
+        <mat-label>Username</mat-label>
+        <input type="text" matInput formControlName="username" />
+        <mat-error>{{
+          getErrorMessage(loginInfoForm.get("username"))
+        }}</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Password</mat-label>
+        <input type="password" matInput formControlName="password" />
+        <mat-error>{{ getErrorMessage(passwordCtrl) }}</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Confirm Password</mat-label>
+        <input type="password" matInput formControlName="confirmPassword" />
+        <mat-error>{{ getErrorMessage(confirmPasswordCtrl) }}</mat-error>
+      </mat-form-field>
+    </div>
+    <span class="mat-error" *ngIf="(showErrorIfUneqPassword$ | async)">{{
+      errorMessages.Mismatch
+    }}</span>
+  </div>
+  <button
+    [disabled]="mainForm.dirty && mainForm.valid"
+    mat-flat-button
+    color="primary"
+    (click)="onSubmitForm()"
+  >
+    Register
+  </button>
+</form>

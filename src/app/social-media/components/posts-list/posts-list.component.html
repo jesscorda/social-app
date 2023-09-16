@@ -1,0 +1,15 @@
+<mat-grid-list cols="5">
+  <mat-grid-tile *ngFor="let post of posts$ | async; let i = index">
+    <mat-card
+      appEnlarge
+      class="card-container"
+      appearance="raised"
+      (click)="navToPost(post.id)"
+    >
+      <mat-card-header>
+        <mat-card-title>{{ post.title | shorten }}</mat-card-title>
+        <mat-card-subtitle>{{ post.createdDate | date }}</mat-card-subtitle>
+      </mat-card-header>
+    </mat-card>
+  </mat-grid-tile>
+</mat-grid-list>

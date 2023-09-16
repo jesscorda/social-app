@@ -1,0 +1,9 @@
+.card-container {
+  width: calc(100% - 2rem);
+  height: calc(100% - 2rem);
+  box-sizing: border-box;
+  border-radius: 1rem;
+  justify-content: space-between;
+  cursor: pointer;
+}
+

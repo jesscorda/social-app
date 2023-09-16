@@ -1,0 +1,24 @@
+<mat-list>
+  <div class="list-header" mat-subheader>
+    Comments
+    <button mat-icon-button color="primary" (click)="showCommentForm = true">
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+  <mat-list-item *ngFor="let comment of comments">
+    <mat-icon matListItemIcon>comment</mat-icon>
+    <h3 matListItemTitle>{{ comment.userId }}</h3>
+    <div class="comment-text" matListItemLine>{{ comment.comment }}</div>
+    <div matListItemLine>{{ comment.createdDate | date }}</div>
+  </mat-list-item>
+
+  <div class="form-container" *ngIf="showCommentForm" @listItem>
+    <mat-form-field appearance="outline" style="width: 100%">
+      <mat-label>Add Comment</mat-label>
+      <input matInput [formControl]="commentCtrl" />
+    </mat-form-field>
+    <button class="save-comment" mat-icon-button color="primary" (click)="onSaveComment()">
+      <mat-icon>send</mat-icon>
+    </button>
+  </div>
+</mat-list>

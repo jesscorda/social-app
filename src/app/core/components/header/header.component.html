@@ -1,0 +1,13 @@
+<mat-toolbar color="primary" class="header-container">
+  <span>Awesome Components</span>
+  <span class="spacer"></span>
+  <ng-container *ngFor="let item of menuItems">
+    <a
+      [ngClass]="{'underline': (selectedItem$ | async) === item.name}"
+      mat-button
+      [routerLink]="item.route"
+      (click)="onItemClick(item.name)"
+      >{{ item.name }}</a
+    >
+  </ng-container>
+</mat-toolbar>
